@@ -13,6 +13,10 @@ const userschema=mongoose.Schema({
     phno:{
         type:Number,
         required:true
-    }
+    },
+    date: {
+        type: Date,
+        default: Date.now
+      }
 })
 module.exports=mongoose.model("user",userschema);

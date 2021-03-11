@@ -2,6 +2,7 @@ const express=require ('express')
 const app=express();
 const Connectdb=require('./helpers/db')
 const bodyparser=require('body-parser')
+const morgan =require('morgan')
 
 
 
@@ -9,15 +10,18 @@ const bodyparser=require('body-parser')
 require('dotenv').config({
     path:'./config/config.env'
 })
-app.use(bodyparser.json())
+app.use(express.json())
+app.use(morgan('dev'))
 Connectdb();
 
 
 
 //load routes
 const authuser=require('./routes/authuser')
+const mail=require('./routes/mail')
 
 app.use('/api',authuser)
+app.use('/api',mail)
 
 
 app.use((req,res)=> {
@@ -29,5 +33,5 @@ app.use((req,res)=> {
 
 PORT=process.env.PORT||15000;
 app.listen(PORT,()=> {
-    console.log({PORT})
+    console.log(`${PORT}`)
 })
