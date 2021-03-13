@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import Home from '././components/Login'
+import Home from '././components/Register'
 
 function App() {
   return (

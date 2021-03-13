@@ -38,15 +38,19 @@ exports.Usercontrollers= async(req, res) => {
 
 //login
 exports.postLogin=async(req,res)=> {
-  try {
-    let user = await User.findOne({ phno});
+ const{phno,password}=req.body
 
-    if (!user) return res.status(400).json({ msg: "Invalid Credentials" });
+  try {
+    let user = await User.findOne({phno});
+
+    if (!user) {
+      return res.status(400).json({ msg: "Invalid Credentials" });
+    }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ msg: "Invalid Credentials" });
-
-
+    if (!isMatch) {
+      return res.status(400).json({ msg: "Invalid Credentials" });
+    }
     const token = jwt.sign(
       {
         _id: user._id
@@ -56,20 +60,19 @@ exports.postLogin=async(req,res)=> {
         expiresIn: '7d'
       }
     );
-    const { _id,phno } = user;
+    const { _id,} = user;
 
-    return res.json({msg:"successs",
+    return res.json({
       token,
       user: {
         _id,
        phno
       }
     });
-  
-    
+
 
   } catch (err) {
-   
-    res.status(500).json({ msg: "Internal Server Error" });
+    console.error(err.message);
+    return res.status(500).send("Internal Server Error");
   }
 }

@@ -1,28 +1,41 @@
-
-import  Button  from 'react-bootstrap/Button'
 import React from 'react'
-import Card  from 'react-bootstrap/Card'
-import Form from 'react-bootstrap/Form'
-import Col from 'react-bootstrap/Col'
+import {Image, Form,Button} from 'react-bootstrap'
 
 
-function Login () {
-    return(
-        <div className="login" style={{marginLeft:"40%",marginRight:"50%",marginTop:"10%",backgroundColor:"ghostwhite"}}>
-            <Card style={{ width: '35rem' }}>
-                  <h4 style={{fontFamily:"monospace",color:"blue",fontSize:"20px"}}>Hemail.in</h4>
-                  <h5  style={{fontFamily:"monospace",color:"black",fontSize:"15px"}}>Signin with Hemail</h5><br/>
-                  <Form>
-                  <Col  style={{marginLeft:"40px"}} sm={2} md={6}>
-                          <Form.Control type="name" placeholder="phno" /><br/><br/>
-                          <Form.Control type="password" placeholder="password" /><br/><br/>
-                          <Button variant="info">Signin</Button>
-                         
-                         </Col>
-                  </Form>
-            </Card>
 
-        </div>
-    )
+
+
+
+
+class Login extends React.Component{
+    render(){
+        return(
+            <div className="Login">
+               
+               <h5 style={{fontFamily:"monospace",fontSize:"20px",color:"blue",marginTop:"5%"}}>Hemail Services!</h5>
+                <h6  style={{fontFamily:"monospace",fontSize:"20px"}}>Stay Happy With Us</h6>
+                
+                <div className="container">
+                    <div className="row">
+                        <div  className="col-sm-5 col-md-5">
+                            <Image src="Assets/login1.jpg" thumbnail roundedCircle/>
+                        </div>
+                        <div style={{marginTop:"12%"}}className=" ml-auto col-sm-5 col-md-5">
+                            <Form> 
+                              
+                                <Form.Control type="email" placeholder="Email"/><br/>
+                                <Form.Control type="password" placeholder="password"/><br/>
+                                <Button variant="info">LOGIN</Button>
+                               
+                             
+                            </Form>
+                        </div>
+                    </div>
+                </div>
+                       
+              
+            </div>
+        )
+    }
 }
 export default Login
